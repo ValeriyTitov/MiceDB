@@ -15,7 +15,6 @@ INSERT INTO @Tmp VALUES ('Март', 841);
 
 SELECT *, SUM(Amount) OVER (PARTITION BY AMonth
                             ORDER BY Id
-							ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-							)
+                            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
 FROM @Tmp
 ORDER BY Id
