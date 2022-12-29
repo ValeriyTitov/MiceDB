@@ -1,3 +1,7 @@
+/*
+ОКСМ — Общероссийский классификатор стран мира
+*/
+
 DECLARE @Tmp TABLE
 (
 [Code] VARCHAR(3) UNIQUE,
