@@ -16,7 +16,7 @@ DECLARE @Result TABLE
 (
 	[ID] [int] IDENTITY,
 	[ObjectID] int,
-	[Catery] VARCHAR(32),
+	[Category] VARCHAR(32),
 	[Caption] [varchar](256),
 	[ImageIndex] int,
 	[Description] [varchar](255)
@@ -26,7 +26,7 @@ SET NOCOUNT ON
 
 IF @iType=-9 --TABLES ONLY
  BEGIN
-  INSERT INTO @Result (ObjectID,[Catery],[Caption], [ImageIndex], [Description])
+  INSERT INTO @Result (ObjectID,[Category],[Caption], [ImageIndex], [Description])
   SELECT NULL,'Table', TABLE_NAME, 86, TABLE_NAME
   FROM INFORMATION_SCHEMA.TABLES
  END
@@ -34,7 +34,7 @@ IF @iType=-9 --TABLES ONLY
 
 IF @iType=-8 --VIEWS ONLY
  BEGIN
-  INSERT INTO @Result (ObjectID,[Catery],[Caption], [ImageIndex], [Description])
+  INSERT INTO @Result (ObjectID,[Category],[Caption], [ImageIndex], [Description])
   SELECT NULL,'View', TABLE_NAME, 477, 'IS UPDATABLE: '+CONVERT(VARCHAR(8), IS_UPDATABLE)
   FROM INFORMATION_SCHEMA.VIEWS
  END
@@ -43,7 +43,7 @@ IF @iType=-8 --VIEWS ONLY
 
 IF @iType=-7 --SEQUENCES
  BEGIN
-  INSERT INTO @Result (ObjectID,[Catery],[Caption], [ImageIndex], [Description])
+  INSERT INTO @Result (ObjectID,[Category],[Caption], [ImageIndex], [Description])
   SELECT NULL,'Sequence', SEQUENCE_NAME, 233, 'Max value: '+CONVERT(VARCHAR(32), MAXIMUM_VALUE)
   FROM INFORMATION_SCHEMA.SEQUENCES
  END 
@@ -51,16 +51,16 @@ IF @iType=-7 --SEQUENCES
 
 IF @iType=-4 --STORED PROCEDURES, TABLES, VIEWS
  BEGIN
-  INSERT INTO @Result (ObjectID,[Catery],[Caption], [ImageIndex], [Description])
+  INSERT INTO @Result (ObjectID,[Category],[Caption], [ImageIndex], [Description])
   SELECT NULL,'Stored procedure', SPECIFIC_NAME, 506, 'Last change: '+CONVERT(VARCHAR(16), LAST_ALTERED, 120)
   FROM INFORMATION_SCHEMA.ROUTINES
   WHERE ROUTINE_TYPE='PROCEDURE'
   
-  INSERT INTO @Result (ObjectID,[Catery],[Caption], [ImageIndex], [Description])
+  INSERT INTO @Result (ObjectID,[Category],[Caption], [ImageIndex], [Description])
   SELECT NULL,'Table', TABLE_NAME, 86, TABLE_NAME
   FROM INFORMATION_SCHEMA.TABLES
   
-  INSERT INTO @Result (ObjectID,[Catery],[Caption], [ImageIndex], [Description])
+  INSERT INTO @Result (ObjectID,[Category],[Caption], [ImageIndex], [Description])
   SELECT NULL,'View', TABLE_NAME, 477, 'IS UPDATABLE: '+CONVERT(VARCHAR(8), IS_UPDATABLE)
   FROM INFORMATION_SCHEMA.VIEWS
  END
@@ -68,11 +68,11 @@ IF @iType=-4 --STORED PROCEDURES, TABLES, VIEWS
 
 IF @iType=-3 --TABLES, VIEWS (for appDialog  table browser)
  BEGIN
-  INSERT INTO @Result (ObjectID,[Catery],[Caption], [ImageIndex], [Description])
+  INSERT INTO @Result (ObjectID,[Category],[Caption], [ImageIndex], [Description])
   SELECT NULL,'Table', TABLE_NAME, 86, TABLE_NAME
   FROM INFORMATION_SCHEMA.TABLES
   
-  INSERT INTO @Result (ObjectID,[Catery],[Caption], [ImageIndex], [Description])
+  INSERT INTO @Result (ObjectID,[Category],[Caption], [ImageIndex], [Description])
   SELECT NULL,'View', TABLE_NAME, 477, 'IS UPDATABLE: '+CONVERT(VARCHAR(8), IS_UPDATABLE)
   FROM INFORMATION_SCHEMA.VIEWS
  END
@@ -80,7 +80,7 @@ IF @iType=-3 --TABLES, VIEWS (for appDialog  table browser)
 
 IF @iType=-2 --STORED PROCEDURES ONLY
  BEGIN
-  INSERT INTO @Result (ObjectID,[Catery],[Caption], [ImageIndex], [Description])
+  INSERT INTO @Result (ObjectID,[Category],[Caption], [ImageIndex], [Description])
   SELECT NULL,'Stored procedures', SPECIFIC_NAME, 506, 'Last change: '+CONVERT(VARCHAR(16), LAST_ALTERED, 120)
   FROM INFORMATION_SCHEMA.ROUTINES
   WHERE ROUTINE_TYPE='PROCEDURE'
@@ -96,7 +96,7 @@ IF @iType=-2 --STORED PROCEDURES ONLY
 
 SELECT    R.*
 FROM @Result R
-ORDER BY  R.[Catery]
+ORDER BY  R.[Category]
 
 END
 
