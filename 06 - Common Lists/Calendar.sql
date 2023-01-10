@@ -3,9 +3,16 @@ DECLARE @StartDate  date = '19900101', @EndDate date = '20991231'
 DECLARE @Tmp TABLE (TheDate DATE PRIMARY KEY, IsHoliday bit NOT NULL, IsTradingDay BIT NOT NULL, TheWeekDay INT, TheWeekDayStr VARCHAR(32),  Comment VARCHAR(255))
 DECLARE @Holidays TABLE (AMonth int, ADay int, Comment VARCHAR(255), IsHoliday bit)
 
+
+INSERT INTO @Holidays VALUES (1,1,'Новогоние праздники', 1);
+INSERT INTO @Holidays VALUES (1,2,'Новогоние праздники', 1);
+INSERT INTO @Holidays VALUES (1,3,'Новогоние праздники', 1);
+INSERT INTO @Holidays VALUES (1,4,'Новогоние праздники', 1);
+INSERT INTO @Holidays VALUES (1,5,'Новогоние праздники', 1);
+INSERT INTO @Holidays VALUES (1,6,'Новогоние праздники', 1);
 INSERT INTO @Holidays VALUES (1,7,'Рождество', 1);
 INSERT INTO @Holidays VALUES (2,23,'День защитников отечества', 1);
-INSERT INTO @Holidays VALUES (2,29,'-', 0);
+INSERT INTO @Holidays VALUES (2,29,'Весокосный день', 0);
 INSERT INTO @Holidays VALUES (3,8,'Международный женский день', 1);
 INSERT INTO @Holidays VALUES (5,1,'Первое Мая - День труда',1);
 INSERT INTO @Holidays VALUES (5,9,'День победы над фашизмом',1);
@@ -50,7 +57,9 @@ WHERE TheWeekDay IN (6,7)
 
 
 UPDATE @Tmp
-SET IsHoliday=1,
+SET IsHoliday=CASE 
+               WHEN H.IsHoliday=1 THEN 1
+              END,
     Comment=H.Comment
 FROM @Holidays H
 WHERE (DATEPART(MONTH,[@Tmp].TheDate) = H.AMonth) AND (DATEPART(DAY,[@Tmp].TheDate)=H.ADay)
