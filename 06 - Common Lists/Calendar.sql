@@ -4,16 +4,16 @@ DECLARE @Tmp TABLE (TheDate DATE PRIMARY KEY, IsHoliday bit NOT NULL, IsTradingD
 DECLARE @Holidays TABLE (AMonth int, ADay int, Comment VARCHAR(255), IsHoliday bit)
 
 
-INSERT INTO @Holidays VALUES (1,1,'Новогоние праздники', 1);
-INSERT INTO @Holidays VALUES (1,2,'Новогоние праздники', 1);
-INSERT INTO @Holidays VALUES (1,3,'Новогоние праздники', 1);
-INSERT INTO @Holidays VALUES (1,4,'Новогоние праздники', 1);
-INSERT INTO @Holidays VALUES (1,5,'Новогоние праздники', 1);
-INSERT INTO @Holidays VALUES (1,6,'Новогоние праздники', 1);
+INSERT INTO @Holidays VALUES (1,1,'Новогодние праздники', 1);
+INSERT INTO @Holidays VALUES (1,2,'Новогодние праздники', 1);
+INSERT INTO @Holidays VALUES (1,3,'Новогодние праздники', 1);
+INSERT INTO @Holidays VALUES (1,4,'Новогодние праздники', 1);
+INSERT INTO @Holidays VALUES (1,5,'Новогодние праздники', 1);
+INSERT INTO @Holidays VALUES (1,6,'Новогодние праздники', 1);
 INSERT INTO @Holidays VALUES (1,7,'Рождество', 1);
-INSERT INTO @Holidays VALUES (1,8,'Новогоние праздники', 1);
+INSERT INTO @Holidays VALUES (1,8,'Новогодние праздники', 1);
 INSERT INTO @Holidays VALUES (2,23,'День защитников отечества', 1);
-INSERT INTO @Holidays VALUES (2,29,'Весокосный день', 0);
+INSERT INTO @Holidays VALUES (2,29,'Високосный день', 0);
 INSERT INTO @Holidays VALUES (3,8,'Международный женский день', 1);
 INSERT INTO @Holidays VALUES (5,1,'Первое Мая - День труда',1);
 INSERT INTO @Holidays VALUES (5,9,'День победы над фашизмом',1);
