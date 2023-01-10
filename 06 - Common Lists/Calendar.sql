@@ -11,6 +11,7 @@ INSERT INTO @Holidays VALUES (1,4,'Новогоние праздники', 1);
 INSERT INTO @Holidays VALUES (1,5,'Новогоние праздники', 1);
 INSERT INTO @Holidays VALUES (1,6,'Новогоние праздники', 1);
 INSERT INTO @Holidays VALUES (1,7,'Рождество', 1);
+INSERT INTO @Holidays VALUES (1,8,'Новогоние праздники', 1);
 INSERT INTO @Holidays VALUES (2,23,'День защитников отечества', 1);
 INSERT INTO @Holidays VALUES (2,29,'Весокосный день', 0);
 INSERT INTO @Holidays VALUES (3,8,'Международный женский день', 1);
