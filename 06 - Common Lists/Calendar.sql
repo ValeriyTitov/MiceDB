@@ -57,13 +57,15 @@ WHERE TheWeekDay IN (6,7)
 
 
 UPDATE @Tmp
-SET IsHoliday=CASE 
-               WHEN H.IsHoliday=1 THEN 1
-              END,
-    Comment=H.Comment
+SET IsHoliday=1
+FROM @Holidays H
+WHERE (DATEPART(MONTH,[@Tmp].TheDate) = H.AMonth) AND (DATEPART(DAY,[@Tmp].TheDate)=H.ADay) AND H.IsHoliday=1
+
+
+UPDATE @Tmp
+SET Comment=H.Comment
 FROM @Holidays H
 WHERE (DATEPART(MONTH,[@Tmp].TheDate) = H.AMonth) AND (DATEPART(DAY,[@Tmp].TheDate)=H.ADay)
-
 
 SELECT *
 FROM @Tmp
