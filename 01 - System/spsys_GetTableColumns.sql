@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE [dbo].[spsys_GetTableColumns] @TableName VARCHAR(255) 
+CREATE OR ALTER PROCEDURE [dbo].[spsys_GetTableColumns] @TableName VARCHAR(80) 
 AS
 BEGIN
 IF NOT EXISTS
